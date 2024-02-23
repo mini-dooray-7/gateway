@@ -1,9 +1,9 @@
 package com.nhnacademy.mini.dooray.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nhnacademy.mini.dooray.auth.controller.AuthController;
-import com.nhnacademy.mini.dooray.auth.service.AuthService;
-import com.nhnacademy.mini.dooray.domain.User;
+import com.nhnacademy.mini.dooray.account.auth.controller.AuthController;
+import com.nhnacademy.mini.dooray.account.auth.service.AuthService;
+import com.nhnacademy.mini.dooray.account.domain.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;

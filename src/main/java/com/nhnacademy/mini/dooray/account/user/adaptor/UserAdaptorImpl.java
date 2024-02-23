@@ -1,0 +1,89 @@
+package com.nhnacademy.mini.dooray.account.user.adaptor;
+
+import com.nhnacademy.mini.dooray.account.domain.User;
+import com.nhnacademy.mini.dooray.account.domain.dto.NoPasswordDto;
+import com.nhnacademy.mini.dooray.account.domain.dto.UserInfoDto;
+import com.nhnacademy.mini.dooray.account.domain.dto.UserStateDto;
+import lombok.RequiredArgsConstructor;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.*;
+import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
+
+@Component
+@RequiredArgsConstructor
+public class UserAdaptorImpl implements UserAdaptor{
+    private final RestTemplate restTemplate;
+
+    @Override
+    public List<NoPasswordDto> getUsers(String state) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
+
+        HttpEntity<String> requestEntity = new HttpEntity<>(headers);
+        ResponseEntity<List<NoPasswordDto>> response = restTemplate.exchange(
+                "http://localhost:8080/users?state={state}",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference<List<NoPasswordDto>>() {
+                },
+                state
+        );
+        return response.getBody();
+    }
+
+    @Override
+    public User getUser(String id) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
+
+        HttpEntity<String> requestEntity = new HttpEntity<>(headers);
+        ResponseEntity<User> response = restTemplate.exchange(
+                "http://localhost:8080/users/{id}",
+                HttpMethod.GET,
+                requestEntity,
+                User.class,
+                id
+        );
+        return response.getBody();
+    }
+
+    @Override
+    public String updateUserInfo(String id, UserInfoDto userInfoDto) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
+
+        HttpEntity<UserInfoDto> requestEntity = new HttpEntity<>(userInfoDto, headers);
+        ResponseEntity<String> response = restTemplate.exchange(
+                "http://localhost:8080/users/info/{id}",
+                HttpMethod.PUT,
+                requestEntity,
+                String.class,
+                id
+        );
+        return response.getBody();
+    }
+
+    @Override
+    public String UpdateUserState(String id, UserStateDto userStateDto) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
+
+        HttpEntity<UserStateDto> requestEntity = new HttpEntity<>(userStateDto, headers);
+        ResponseEntity<String> response = restTemplate.exchange(
+                "http://localhost:8080/users/state/{id}",
+                HttpMethod.PUT,
+                requestEntity,
+                String.class,
+                id
+        );
+        return response.getBody();
+    }
+
+}

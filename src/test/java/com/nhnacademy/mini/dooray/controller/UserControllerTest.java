@@ -1,13 +1,13 @@
 package com.nhnacademy.mini.dooray.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nhnacademy.mini.dooray.domain.User;
-import com.nhnacademy.mini.dooray.domain.UserState;
-import com.nhnacademy.mini.dooray.domain.dto.NoPasswordDto;
-import com.nhnacademy.mini.dooray.user.controller.UserController;
-import com.nhnacademy.mini.dooray.user.dto.UserInfoDto;
-import com.nhnacademy.mini.dooray.user.dto.UserStateDto;
-import com.nhnacademy.mini.dooray.user.service.UserService;
+import com.nhnacademy.mini.dooray.account.domain.User;
+import com.nhnacademy.mini.dooray.account.domain.UserState;
+import com.nhnacademy.mini.dooray.account.domain.dto.NoPasswordDto;
+import com.nhnacademy.mini.dooray.account.user.controller.UserController;
+import com.nhnacademy.mini.dooray.account.domain.dto.UserInfoDto;
+import com.nhnacademy.mini.dooray.account.domain.dto.UserStateDto;
+import com.nhnacademy.mini.dooray.account.user.service.UserService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
