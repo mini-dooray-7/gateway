@@ -1,8 +1,8 @@
-package com.nhnacademy.mini.dooray.controller;
+package com.nhnacademy.mini.dooray.user.controller;
 
 import com.nhnacademy.mini.dooray.domain.User;
 import com.nhnacademy.mini.dooray.domain.dto.NoPasswordDto;
-import com.nhnacademy.mini.dooray.service.UserService;
+import com.nhnacademy.mini.dooray.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

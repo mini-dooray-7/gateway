@@ -1,4 +1,4 @@
-package com.nhnacademy.mini.dooray.adaptor;
+package com.nhnacademy.mini.dooray.user.adaptor;
 
 import com.nhnacademy.mini.dooray.domain.User;
 import com.nhnacademy.mini.dooray.domain.dto.NoPasswordDto;

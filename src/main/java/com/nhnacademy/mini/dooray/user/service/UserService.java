@@ -1,8 +1,8 @@
-package com.nhnacademy.mini.dooray.service;
+package com.nhnacademy.mini.dooray.user.service;
 
-import com.nhnacademy.mini.dooray.adaptor.UserAdaptor;
 import com.nhnacademy.mini.dooray.domain.User;
 import com.nhnacademy.mini.dooray.domain.dto.NoPasswordDto;
+import com.nhnacademy.mini.dooray.user.adaptor.UserAdaptor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

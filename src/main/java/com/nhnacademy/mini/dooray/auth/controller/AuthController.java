@@ -1,7 +1,7 @@
-package com.nhnacademy.mini.dooray.controller;
+package com.nhnacademy.mini.dooray.auth.controller;
 
+import com.nhnacademy.mini.dooray.auth.service.AuthService;
 import com.nhnacademy.mini.dooray.domain.dto.AuthDto;
-import com.nhnacademy.mini.dooray.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

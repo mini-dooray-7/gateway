@@ -1,6 +1,6 @@
-package com.nhnacademy.mini.dooray.service;
+package com.nhnacademy.mini.dooray.auth.service;
 
-import com.nhnacademy.mini.dooray.adaptor.AuthAdaptor;
+import com.nhnacademy.mini.dooray.auth.adaptor.AuthAdaptor;
 import com.nhnacademy.mini.dooray.domain.dto.AuthDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
