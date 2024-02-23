@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Profile</title>
+    <style>
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 0;
+        }
+        form {
+            display: inline; /* To keep buttons on the same line */
+        }
+        .edit-buttons {
+            display: flex;
+            justify-content: left; /* Buttons are now aligned to the center */
+            align-items: center;
+            gap: 5px; /* Gap between buttons */
+        }
+    </style>
+</head>
+<body>
+<h2>Edit Profile</h2>
+
+<form th:action="@{/users/info/{id}(id=${user.userId})}" th:method="put" th:object="${user}" id="editForm">
+    <p><strong>Username:</strong>
+        <input type="text" th:field="*{userName}" /></p>
+    <p><strong>Email:</strong>
+        <input type="text" th:field="*{userEmail}" /></p>
+    <p><strong>Password:</strong>
+        <input type="password" th:field="*{userPassword}" /></p>
+    <div class="edit-buttons">
+        <p><input type="submit" value="수정" /></p>
+        <a href="javascript:history.back()"><button type="button">취소</button></a>
+    </div>
+</form>
+
+<form th:action="@{/users/state/{id}(id=${user.userId})}" method="post">
+    <input type="hidden" name="state" value="DEACTIVATED" />
+    <button type="submit">탈퇴하기</button>
+</form>
+
+<form th:action="@{/users/state/{id}(id=${user.userId})}" method="post">
+    <input type="hidden" name="state" value="INACTIVATED" />
+    <button type="submit">휴면 상태로 전환</button>
+</form>
+
+</body>
+</html>

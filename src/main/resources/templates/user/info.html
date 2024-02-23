@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+</head>
+<body>
+<h2>User Profile</h2>
+<p><strong>User ID:</strong> <span th:text="${user.userId}">User ID</span></p>
+<p><strong>Username:</strong> <span th:text="${user.userName}">Username</span></p>
+<p><strong>Email:</strong> <span th:text="${user.userEmail}">Email</span></p>
+<p><strong>User State:</strong> <span th:text="${user.userState}">User State</span></p>
+
+<!-- Update Button -->
+<form action="#" th:action="@{/users/edit/{userId}(userId=${user.userId})}" method="get">
+    <button type="submit">수정</button>
+</form>
+
+</body>
+</html>
