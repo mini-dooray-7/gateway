@@ -55,7 +55,7 @@ public class UserAdaptorImpl implements UserAdaptor{
     }
 
     @Override
-    public String updateUserInfo(String id, UserInfoDto userInfoDto) {
+    public ResponseEntity<String> updateUserInfo(String id, UserInfoDto userInfoDto) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
@@ -68,11 +68,11 @@ public class UserAdaptorImpl implements UserAdaptor{
                 String.class,
                 id
         );
-        return response.getBody();
+        return response;
     }
 
     @Override
-    public String UpdateUserState(String id, UserStateDto userStateDto) {
+    public ResponseEntity<String> UpdateUserState(String id, UserStateDto userStateDto) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
@@ -85,7 +85,7 @@ public class UserAdaptorImpl implements UserAdaptor{
                 String.class,
                 id
         );
-        return response.getBody();
+        return response;
     }
 
 }

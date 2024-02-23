@@ -1,10 +1,11 @@
 package com.nhnacademy.mini.dooray.account.user.service;
 
-import com.nhnacademy.mini.dooray.account.domain.dto.UserInfoDto;
-import com.nhnacademy.mini.dooray.account.domain.dto.UserStateDto;
 import com.nhnacademy.mini.dooray.account.domain.User;
 import com.nhnacademy.mini.dooray.account.domain.dto.NoPasswordDto;
+import com.nhnacademy.mini.dooray.account.domain.dto.UserInfoDto;
+import com.nhnacademy.mini.dooray.account.domain.dto.UserStateDto;
 import com.nhnacademy.mini.dooray.account.user.adaptor.UserAdaptor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,11 +25,11 @@ public class UserService {
         return userAdaptor.getUser(id);
     }
 
-    public String updateUserInfo(String id, UserInfoDto userInfoDto){
+    public ResponseEntity<String> updateUserInfo(String id, UserInfoDto userInfoDto){
         return userAdaptor.updateUserInfo(id, userInfoDto);
     }
 
-    public String UpdateUserState(String id, UserStateDto userStateDto){
+    public ResponseEntity<String> UpdateUserState(String id, UserStateDto userStateDto){
         return userAdaptor.UpdateUserState(id, userStateDto);
     }
 }
