@@ -17,7 +17,7 @@ public class AuthAdaptorImpl implements AuthAdaptor{
     private final AccountRequestUrl url;
 
     @Override
-    public String register(User user) {
+    public ResponseEntity<String> register(User user) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
@@ -29,11 +29,11 @@ public class AuthAdaptorImpl implements AuthAdaptor{
                 requestEntity,
                 String.class
         );
-        return responseEntity.getBody();
+        return responseEntity;
     }
 
     @Override
-    public AuthDto login(String id) {
+    public ResponseEntity<AuthDto> login(String id) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
@@ -46,6 +46,6 @@ public class AuthAdaptorImpl implements AuthAdaptor{
                 AuthDto.class,
                 id
         );
-        return responseEntity.getBody();
+        return responseEntity;
     }
 }

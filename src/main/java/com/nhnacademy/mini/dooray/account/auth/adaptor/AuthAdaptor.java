@@ -2,8 +2,9 @@ package com.nhnacademy.mini.dooray.account.auth.adaptor;
 
 import com.nhnacademy.mini.dooray.account.domain.User;
 import com.nhnacademy.mini.dooray.account.domain.dto.AuthDto;
+import org.springframework.http.ResponseEntity;
 
 public interface AuthAdaptor {
-    String register(User user);
-    AuthDto login(String id);
+    ResponseEntity<String> register(User user);
+    ResponseEntity<AuthDto> login(String id);
 }
