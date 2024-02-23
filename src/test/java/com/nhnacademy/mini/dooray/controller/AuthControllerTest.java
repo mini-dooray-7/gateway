@@ -64,7 +64,7 @@ public class AuthControllerTest {
 
         MvcResult result = mockMvc.perform(get("/auth/login/{id}", "user1"))
                 .andExpect(status().isOk()).andReturn();
-        assertEquals("userList", result.getModelAndView().getViewName());
+        assertEquals("home", result.getModelAndView().getViewName());
 
         mockMvc.perform(get("/auth/login/{id}", "user2"))
                 .andExpect(redirectedUrl("auth/login"));

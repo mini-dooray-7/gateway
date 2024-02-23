@@ -31,7 +31,7 @@ public class AuthController {
         ResponseEntity<AuthDto> response = authService.login(id);
         if (response.getStatusCode().is2xxSuccessful()){
             model.addAttribute("auth", response);
-            return "userList";
+            return "home";
         }
         return "redirect:auth/login";
     }
