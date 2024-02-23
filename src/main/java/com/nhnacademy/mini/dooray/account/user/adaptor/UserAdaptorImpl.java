@@ -4,6 +4,7 @@ import com.nhnacademy.mini.dooray.account.domain.User;
 import com.nhnacademy.mini.dooray.account.domain.dto.NoPasswordDto;
 import com.nhnacademy.mini.dooray.account.domain.dto.UserInfoDto;
 import com.nhnacademy.mini.dooray.account.domain.dto.UserStateDto;
+import com.nhnacademy.mini.dooray.config.AccountRequestUrl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -16,6 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserAdaptorImpl implements UserAdaptor{
     private final RestTemplate restTemplate;
+    private final AccountRequestUrl url;
 
     @Override
     public List<NoPasswordDto> getUsers(String state) {
@@ -25,7 +27,7 @@ public class UserAdaptorImpl implements UserAdaptor{
 
         HttpEntity<String> requestEntity = new HttpEntity<>(headers);
         ResponseEntity<List<NoPasswordDto>> response = restTemplate.exchange(
-                "http://localhost:8080/users?state={state}",
+                url.get()+"/users?state={state}",
                 HttpMethod.GET,
                 requestEntity,
                 new ParameterizedTypeReference<List<NoPasswordDto>>() {
@@ -43,7 +45,7 @@ public class UserAdaptorImpl implements UserAdaptor{
 
         HttpEntity<String> requestEntity = new HttpEntity<>(headers);
         ResponseEntity<User> response = restTemplate.exchange(
-                "http://localhost:8080/users/{id}",
+                url.get()+"/users/{id}",
                 HttpMethod.GET,
                 requestEntity,
                 User.class,
@@ -60,7 +62,7 @@ public class UserAdaptorImpl implements UserAdaptor{
 
         HttpEntity<UserInfoDto> requestEntity = new HttpEntity<>(userInfoDto, headers);
         ResponseEntity<String> response = restTemplate.exchange(
-                "http://localhost:8080/users/info/{id}",
+                url.get()+"/users/info/{id}",
                 HttpMethod.PUT,
                 requestEntity,
                 String.class,
@@ -77,7 +79,7 @@ public class UserAdaptorImpl implements UserAdaptor{
 
         HttpEntity<UserStateDto> requestEntity = new HttpEntity<>(userStateDto, headers);
         ResponseEntity<String> response = restTemplate.exchange(
-                "http://localhost:8080/users/state/{id}",
+                url.get()+"/users/state/{id}",
                 HttpMethod.PUT,
                 requestEntity,
                 String.class,

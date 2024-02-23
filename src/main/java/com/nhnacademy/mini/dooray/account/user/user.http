@@ -1,0 +1,26 @@
+PUT http://192.168.71.106:8080/users/state/user1
+Content-Type: application/json
+
+{
+  "userState": "REGISTERED"
+}
+
+###
+PUT http://192.168.71.106:8080/users/info/user1
+Content-Type: application/json
+
+{
+"userName": "username",
+"userEmail": "2mail.com",
+"userPassword":"123123"
+}
+
+###
+GET http://192.168.71.106:8080/users
+Accept: application/json
+
+###
+GET http://192.168.71.106:8080/users/user1
+Accept: application/json
+
+###
