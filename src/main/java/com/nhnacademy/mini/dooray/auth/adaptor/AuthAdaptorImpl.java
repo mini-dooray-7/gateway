@@ -15,12 +15,12 @@ public class AuthAdaptorImpl implements AuthAdaptor{
     private final RestTemplate restTemplate;
 
     @Override
-    public String register() {
+    public String register(User user) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
 
-        HttpEntity<User> requestEntity = new HttpEntity<>(headers);
+        HttpEntity<User> requestEntity = new HttpEntity<>(user, headers);
         ResponseEntity<String> responseEntity = restTemplate.exchange(
                 "http://localhost:8080/auth/register",
                 HttpMethod.POST,

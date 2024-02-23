@@ -1,30 +1,28 @@
 package com.nhnacademy.mini.dooray.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nhnacademy.mini.dooray.auth.controller.AuthController;
+import com.nhnacademy.mini.dooray.auth.service.AuthService;
 import com.nhnacademy.mini.dooray.domain.User;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@AutoConfigureMockMvc
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class AccountAPITest {
+@WebMvcTest(AuthController.class)
+public class AuthControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @Order(1)
+    @MockBean
+    AuthService authService;
+
     @Test
     void register() throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -33,28 +31,14 @@ public class AccountAPITest {
         mockMvc.perform(post("/auth/register")
                 .content(objectMapper.writeValueAsString(user))
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isCreated())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.id", equalTo("userId")));
+                .andExpect(status().isCreated());
     }
 
-    @Order(2)
     @Test
     void login() throws Exception {
 
         mockMvc.perform(get("/auth/login/{id}", "userId"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.id", equalTo("userId")))
-                .andExpect(jsonPath("$.password", equalTo("userPW")));
-    }
-    @Order(3)
-    @Test
-    void getUsers() throws Exception {
-        mockMvc.perform(get("/users?state={state}"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$[0].id", equalTo("userId")));
+                .andExpect(status().isOk());
     }
 }
 

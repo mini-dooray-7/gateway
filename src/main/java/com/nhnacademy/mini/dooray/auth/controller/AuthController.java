@@ -1,6 +1,7 @@
 package com.nhnacademy.mini.dooray.auth.controller;
 
 import com.nhnacademy.mini.dooray.auth.service.AuthService;
+import com.nhnacademy.mini.dooray.domain.User;
 import com.nhnacademy.mini.dooray.domain.dto.AuthDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -12,9 +13,9 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/auth/register")
-    @ResponseStatus(HttpStatus.OK)
-    public String register() {
-        return authService.register();
+    @ResponseStatus(HttpStatus.CREATED)
+    public String register(@RequestBody User user) {
+        return authService.register(user);
     }
 
     @GetMapping("/auth/login/{id}")
