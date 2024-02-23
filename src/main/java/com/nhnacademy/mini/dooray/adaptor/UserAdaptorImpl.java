@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -17,7 +16,7 @@ public class UserAdaptorImpl implements UserAdaptor{
     private final RestTemplate restTemplate;
 
     @Override
-    public List<NoPasswordDto> getUsers(@RequestParam String state) {
+    public List<NoPasswordDto> getUsers(String state) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
