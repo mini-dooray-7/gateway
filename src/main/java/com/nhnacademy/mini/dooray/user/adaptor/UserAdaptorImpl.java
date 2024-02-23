@@ -2,6 +2,8 @@ package com.nhnacademy.mini.dooray.user.adaptor;
 
 import com.nhnacademy.mini.dooray.domain.User;
 import com.nhnacademy.mini.dooray.domain.dto.NoPasswordDto;
+import com.nhnacademy.mini.dooray.user.dto.UserInfoDto;
+import com.nhnacademy.mini.dooray.user.dto.UserStateDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -51,12 +53,12 @@ public class UserAdaptorImpl implements UserAdaptor{
     }
 
     @Override
-    public String updateUserInfo(String id) {
+    public String updateUserInfo(String id, UserInfoDto userInfoDto) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
 
-        HttpEntity<String> requestEntity = new HttpEntity<>(headers);
+        HttpEntity<UserInfoDto> requestEntity = new HttpEntity<>(userInfoDto, headers);
         ResponseEntity<String> response = restTemplate.exchange(
                 "http://localhost:8080/users/info/{id}",
                 HttpMethod.PUT,
@@ -68,12 +70,12 @@ public class UserAdaptorImpl implements UserAdaptor{
     }
 
     @Override
-    public String UpdateUserState(String id) {
+    public String UpdateUserState(String id, UserStateDto userStateDto) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
 
-        HttpEntity<String> requestEntity = new HttpEntity<>(headers);
+        HttpEntity<UserStateDto> requestEntity = new HttpEntity<>(userStateDto, headers);
         ResponseEntity<String> response = restTemplate.exchange(
                 "http://localhost:8080/users/state/{id}",
                 HttpMethod.PUT,

@@ -2,6 +2,8 @@ package com.nhnacademy.mini.dooray.user.controller;
 
 import com.nhnacademy.mini.dooray.domain.User;
 import com.nhnacademy.mini.dooray.domain.dto.NoPasswordDto;
+import com.nhnacademy.mini.dooray.user.dto.UserInfoDto;
+import com.nhnacademy.mini.dooray.user.dto.UserStateDto;
 import com.nhnacademy.mini.dooray.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,37 +23,27 @@ public class UserController {
         return userService.getUser(id);
     }
 
-    @GetMapping("/users?state={state}")
+    @GetMapping("/users")
     @ResponseStatus(HttpStatus.OK)
     public List<NoPasswordDto> getUsers(@RequestParam String state) {
         return userService.getUsers(state);
     }
 
     @PutMapping("/users/info/{id}")
-    public HttpStatus updateUserInfo(@PathVariable String id) {
+    @ResponseStatus(HttpStatus.OK)
+    public String updateUserInfo(@PathVariable String id, UserInfoDto userInfoDto) {
         if (Objects.isNull(userService.getUser(id))) {
-            return HttpStatus.NOT_FOUND;
+            throw new RuntimeException("user not found");
         }
-        userService.updateUserInfo(id);
-        return HttpStatus.OK;
+        return userService.updateUserInfo(id, userInfoDto);
     }
 
     @PutMapping("/users/state/{id}")
-    public HttpStatus updateUserState(@PathVariable String id) {
+    @ResponseStatus(HttpStatus.OK)
+    public String updateUserState(@PathVariable String id, UserStateDto userStateDto) {
         if (Objects.isNull(userService.getUser(id))) {
-            return HttpStatus.NOT_FOUND;
+            throw new RuntimeException("user not found");
         }
-        userService.UpdateUserState(id);
-        return HttpStatus.OK;
+        return userService.UpdateUserState(id, userStateDto);
     }
 }
-/*
-@GetMapping("/accounts/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public Account getAccount(@PathVariable Long id) {
-        if (Objects.isNull(accountService.getAccount(id))) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Account not found");
-        }
-        return accountService.getAccount(id);
-    }
- */

@@ -3,6 +3,8 @@ package com.nhnacademy.mini.dooray.user.service;
 import com.nhnacademy.mini.dooray.domain.User;
 import com.nhnacademy.mini.dooray.domain.dto.NoPasswordDto;
 import com.nhnacademy.mini.dooray.user.adaptor.UserAdaptor;
+import com.nhnacademy.mini.dooray.user.dto.UserInfoDto;
+import com.nhnacademy.mini.dooray.user.dto.UserStateDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,11 +24,11 @@ public class UserService {
         return userAdaptor.getUser(id);
     }
 
-    public String updateUserInfo(String id){
-        return userAdaptor.updateUserInfo(id);
+    public String updateUserInfo(String id, UserInfoDto userInfoDto){
+        return userAdaptor.updateUserInfo(id, userInfoDto);
     }
 
-    public String UpdateUserState(String id){
-        return userAdaptor.UpdateUserState(id);
+    public String UpdateUserState(String id, UserStateDto userStateDto){
+        return userAdaptor.UpdateUserState(id, userStateDto);
     }
 }
