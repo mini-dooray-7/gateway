@@ -1,4 +1,4 @@
-package com.nhnacademy.mini.dooray.task.domain;
+package com.nhnacademy.mini.dooray.task.task.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
