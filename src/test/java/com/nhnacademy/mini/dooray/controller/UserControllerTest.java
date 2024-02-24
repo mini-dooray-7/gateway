@@ -63,7 +63,7 @@ public class UserControllerTest {
         User user = new User("user1", "John", "Doe", "john.doe@example.com");
         UserInfoDto userInfoDto = new UserInfoDto("John", "Doe", "john.doe@example.com");
         when(userService.getUser("user1")).thenReturn(user);
-        when(userService.updateUserInfo("user1", userInfoDto)).thenReturn("200 OK");
+        when(userService.updateUserInfo("user1", userInfoDto)).thenReturn(null);
         when(userService.getUser("user2")).thenReturn(null);
 
 
@@ -90,7 +90,7 @@ public class UserControllerTest {
         when(userService.getUser("user1")).thenReturn(user);
         when(userService.getUser("user2")).thenReturn(null);
 
-        when(userService.UpdateUserState("user1", userStateDto)).thenReturn("200 OK");
+        when(userService.UpdateUserState("user1", userStateDto)).thenReturn(null);
 
         mockMvc.perform(put("/users/state/{id}", "user1")
                         .contentType(MediaType.APPLICATION_JSON)

@@ -6,10 +6,7 @@ import com.nhnacademy.mini.dooray.account.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
 
@@ -36,7 +33,7 @@ public class UserController {
     }
 
     @PutMapping("/users/info/{id}")
-    public String updateUserInfo(@PathVariable String id, UserInfoDto userInfoDto) {
+    public String updateUserInfo(@PathVariable String id, @RequestBody UserInfoDto userInfoDto) {
         if (Objects.isNull(userService.getUser(id))) {
             throw new RuntimeException("user not found");
         }
