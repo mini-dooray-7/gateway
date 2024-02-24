@@ -1,6 +1,6 @@
 package com.nhnacademy.mini.dooray.task.comment.adaptor;
 
-import com.nhnacademy.mini.dooray.config.AccountRequestUrl;
+import com.nhnacademy.mini.dooray.config.ProjectRequestUrl;
 import com.nhnacademy.mini.dooray.task.domain.dto.comment.CommentCreateDto;
 import com.nhnacademy.mini.dooray.task.domain.dto.comment.CommentListDto;
 import com.nhnacademy.mini.dooray.task.domain.dto.comment.CommentUpdateDto;
@@ -16,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CommentAdaptorImpl implements CommentAdaptor {
     private final RestTemplate restTemplate;
-    private final AccountRequestUrl url;
+    private final ProjectRequestUrl url;
 
     @Override
     public List<CommentListDto> getComments(Long taskId) {
