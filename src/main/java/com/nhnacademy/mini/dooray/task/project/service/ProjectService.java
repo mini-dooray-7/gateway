@@ -23,7 +23,7 @@ public class ProjectService {
         return projectAdaptor.getProject(id);
     }
 
-    public ResponseEntity<List<Project>> getProjects(){
+    public List<Project> getProjects(){
         return projectAdaptor.getProjects();
     }
 

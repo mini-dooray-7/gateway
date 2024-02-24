@@ -52,7 +52,7 @@ public class ProjectAdaptorImpl implements ProjectAdaptor{
     }
 
     @Override
-    public ResponseEntity<List<Project>> getProjects() {
+    public List<Project> getProjects() {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
@@ -65,7 +65,7 @@ public class ProjectAdaptorImpl implements ProjectAdaptor{
                 new ParameterizedTypeReference<>() {
                 }
         );
-        return responseEntity;
+        return responseEntity.getBody();
     }
 
     @Override

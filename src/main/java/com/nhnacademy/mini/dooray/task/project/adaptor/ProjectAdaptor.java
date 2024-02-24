@@ -11,7 +11,7 @@ import java.util.List;
 public interface ProjectAdaptor {
     ResponseEntity<String> registerProject(ProjectNameDto projectNameDto);
     ResponseEntity<ProjectInfoDto> getProject(Long id);
-    ResponseEntity<List<Project>> getProjects();
+    List<Project> getProjects();
     ResponseEntity<String> updateProject(Long id, ProjectInfoDto projectInfoDto);
     ResponseEntity<String> deleteProject(Long id);
 }

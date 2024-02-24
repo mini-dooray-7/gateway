@@ -4,6 +4,7 @@ import com.nhnacademy.mini.dooray.account.auth.service.AuthService;
 import com.nhnacademy.mini.dooray.account.domain.User;
 import com.nhnacademy.mini.dooray.account.domain.dto.AuthDto;
 import com.nhnacademy.mini.dooray.account.user.service.UserService;
+import com.nhnacademy.mini.dooray.task.project.service.ProjectService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,7 @@ import java.util.Objects;
 public class AuthController {
     private final AuthService authService;
     private final UserService userService;
+    private final ProjectService projectService;
 
     @PostMapping("/auth/register")
     public String register(@RequestBody User user) {
@@ -36,6 +38,7 @@ public class AuthController {
     public String login(@PathVariable String id, Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
+        model.addAttribute("projects",projectService.getProjects());
 
         if (Objects.nonNull(user)) {
             return "home";
