@@ -1,5 +1,6 @@
 package com.nhnacademy.mini.dooray.task.project.controller;
 
+import com.nhnacademy.mini.dooray.task.domain.dto.ProjectInfoDto;
 import com.nhnacademy.mini.dooray.task.domain.dto.ProjectNameDto;
 import com.nhnacademy.mini.dooray.task.project.service.ProjectService;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +23,27 @@ public class ProjectController {
         throw new RuntimeException("프로젝트 등록 실패 : "+entity.getStatusCode().getReasonPhrase());
     }
 
+    @GetMapping
+    public String getProjects(){
+        projectService.getProjects();
+        return "";
+    }
+
     @GetMapping("/{id}")
     public String getProject(@PathVariable("id") Long id){
-        return "project.project_info";
+        projectService.getProject(id);
+        return "project/project_info";
+    }
+
+    @PutMapping("/{id}")
+    public String updateProject(@PathVariable("id") Long id, ProjectInfoDto projectInfoDto){
+        projectService.update(id, projectInfoDto);
+        return "project/project_info";
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteProject(@PathVariable("id") Long id){
+        projectService.delete(id);
+        return "project/project_info";
     }
 }
