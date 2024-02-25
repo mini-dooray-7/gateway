@@ -2,6 +2,7 @@ package com.nhnacademy.mini.dooray.account.auth.controller;
 
 import com.nhnacademy.mini.dooray.account.auth.service.AuthService;
 import com.nhnacademy.mini.dooray.account.domain.User;
+import com.nhnacademy.mini.dooray.account.domain.UserState;
 import com.nhnacademy.mini.dooray.account.domain.dto.AuthDto;
 import com.nhnacademy.mini.dooray.account.user.service.UserService;
 import com.nhnacademy.mini.dooray.task.project.service.ProjectService;
@@ -38,7 +39,8 @@ public class AuthController {
     public String login(@PathVariable String id, Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-        model.addAttribute("projects",projectService.getProjects());
+        model.addAttribute("projectList", projectService.getProjects());
+        model.addAttribute("existingUsers", userService.getUsers("REGISTERED"));
 
         if (Objects.nonNull(user)) {
             return "home";

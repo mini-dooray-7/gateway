@@ -16,12 +16,12 @@ public class ProjectMemberController {
     @PostMapping("/{id}/member")
     public String register(@PathVariable("id") Long id, @RequestBody ProjectMemberInfoDto projectMemberInfoDto) {
         projectMemberService.register(id, projectMemberInfoDto);
-        return "";
+        return "redirect:/projects/"+id;
     }
 
     @DeleteMapping("/{project_id}/member/{member_id}")
     public String delete(@PathVariable("project_id") Long projectId, @PathVariable("member_id") String memberId) {
         projectMemberService.delete(projectId, memberId);
-        return "";
+        return "redirect:/projects/"+projectId;
     }
 }

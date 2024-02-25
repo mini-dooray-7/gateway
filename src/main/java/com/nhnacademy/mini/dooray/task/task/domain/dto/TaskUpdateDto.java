@@ -1,6 +1,7 @@
 package com.nhnacademy.mini.dooray.task.task.domain.dto;
 
 import com.nhnacademy.mini.dooray.task.domain.ProjectState;
+import com.nhnacademy.mini.dooray.task.task.domain.TaskState;
 import lombok.Data;
 import lombok.Getter;
 
@@ -9,5 +10,5 @@ import lombok.Getter;
 public class TaskUpdateDto {
     private String taskTitle;
     private String taskContent;
-    private ProjectState taskState;
+    private TaskState taskState;
 }

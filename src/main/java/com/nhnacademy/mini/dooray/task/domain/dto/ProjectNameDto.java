@@ -6,5 +6,6 @@ import lombok.Getter;
 @Getter
 @Data
 public class ProjectNameDto {
-    public String projectName;
+    private String projectName;
+    private String[] projectAdminIds;
 }

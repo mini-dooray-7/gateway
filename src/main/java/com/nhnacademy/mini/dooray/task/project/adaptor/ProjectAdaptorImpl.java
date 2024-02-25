@@ -35,17 +35,17 @@ public class ProjectAdaptorImpl implements ProjectAdaptor{
     }
 
     @Override
-    public ResponseEntity<ProjectInfoDto> getProject(Long id) {
+    public ResponseEntity<Project> getProject(Long id) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
 
         HttpEntity<String> requestEntity = new HttpEntity<>(headers);
-        ResponseEntity<ProjectInfoDto> responseEntity = restTemplate.exchange(
+        ResponseEntity<Project> responseEntity = restTemplate.exchange(
                 url.get()+"/projects/{id}",
                 HttpMethod.GET,
                 requestEntity,
-                ProjectInfoDto.class,
+                Project.class,
                 id
         );
         return responseEntity;

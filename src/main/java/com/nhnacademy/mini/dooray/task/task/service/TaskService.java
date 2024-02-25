@@ -1,10 +1,10 @@
 package com.nhnacademy.mini.dooray.task.task.service;
 
 import com.nhnacademy.mini.dooray.home.ResponseException;
-import com.nhnacademy.mini.dooray.task.domain.Task;
 import com.nhnacademy.mini.dooray.task.project.exception.ProjectNotFoundException;
 import com.nhnacademy.mini.dooray.task.project.service.ProjectService;
 import com.nhnacademy.mini.dooray.task.task.adaptor.TaskAdaptor;
+import com.nhnacademy.mini.dooray.task.task.domain.Task;
 import com.nhnacademy.mini.dooray.task.task.domain.dto.TaskCreationDto;
 import com.nhnacademy.mini.dooray.task.task.domain.dto.TaskListDto;
 import com.nhnacademy.mini.dooray.task.task.domain.dto.TaskUpdateDto;

@@ -19,7 +19,7 @@ public class ProjectMilestoneController {
     @PostMapping("/{project_id}/milestone")
     public String registerProjectMilestone(@PathVariable("project_id") Long projectId, @RequestBody ProjectMilestoneNameDto projectMilestoneNameDto) {
         projectMilestoneService.registerProjectMilestone(projectId, projectMilestoneNameDto);
-        return "";
+        return "redirect:/projects/"+projectId;
     }
 
     @GetMapping("/{project_id}/milestone")
@@ -30,6 +30,6 @@ public class ProjectMilestoneController {
     @DeleteMapping("/{project_id}/milestone/{milestone_id}")
     public String deleteProjectMilestone(@PathVariable("project_id") Long projectId,@PathVariable("milestone_id") Long milestoneId) {
         projectMilestoneService.deleteProjectMilestone(projectId, milestoneId);
-        return "";
+        return "redirect:/projects/"+projectId;
     }
 }

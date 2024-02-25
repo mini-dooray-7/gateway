@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Info</title>
+</head>
+<body>
+<h2>Task Info</h2>
+<p><strong>Task ID:</strong> <span th:text="${task.getTaskId()}">Task ID</span></p>
+<p><strong>Task Title:</strong> <span th:text="${task.getTaskTitle()}">Task Title</span></p>
+<p><strong>Task Creation Date:</strong> <span th:text="${task.getTaskCreatedAt()}">Task Creation Date</span></p>
+<p><strong>Task State:</strong> <span th:text="${task.getTaskState()}">Task State</span></p>
+<p><strong>Task Content:</strong> <span th:text="${task.getTaskContent()}">Task Content</span></p>
+
+<hr>
+
+<h3>Members</h3>
+<form th:action="@{/task/{taskId}(taskId=${task.taskId})/member}" method="post" th:object="${newmember}">
+    <p><strong>User Id:</strong>
+        <input type="text" th:field="*{taskUserId}" /></p>
+    <p><strong>User Role:</strong>
+        <select th:field="*{taskUserRole}">
+            <option th:each="role : ${userRoles}"
+                    th:value="${role}" th:text="${role}">Role</option>
+        </select>
+    </p>
+    <button type="submit">멤버 등록</button>
+</form>
+<!--<ul th:each="member : ${project.getProjectUsers()}">-->
+<!--    <li>-->
+<!--        <span th:text="${member.getUserId()} + ' | ' + ${member.getProjectUserRole()}"></span>-->
+<!--        <form th:action="@{/projects/{projectId}(projectId=${project.projectId})/member/{memberId}(memberId=${member.memberId})}" method="post">-->
+<!--            <input type="hidden" name="_method" value="DELETE" />-->
+<!--            <button type="submit">멤버 삭제</button>-->
+<!--        </form>-->
+<!--    </li>-->
+<!--</ul>-->
+
+<hr>
+
+<h3>Milestones</h3>
+<form th:action="@{/task/{taskId}(taskId=${task.taskId})/milestone/{milestoneId}(milestoneId=${task.milestoneId})}" method="post" th:object="${newmilestone}">
+    <p><strong>Milestone Name:</strong>
+        <input type="text" th:field="*{milestoneName}" /></p>
+    <button type="submit">마일스톤 등록</button>
+</form>
+<!--<ul th:each="milestone : ${project_milestones}">-->
+<!--    <li>-->
+<!--        <span th:text="${milestone.milestoneName}"></span>-->
+<!--        <form th:action="@{/projects/{projectId}(projectId=${project.projectId})/milestone/{milestoneId}(milestoneId=${milestone.milestoneId})}" method="post">-->
+<!--            <input type="hidden" name="_method" value="DELETE" />-->
+<!--            <button type="submit">멤버 삭제</button>-->
+<!--        </form>-->
+<!--    </li>-->
+<!--</ul>-->
+
+<hr>
+
+<!-- Update Button -->
+<form action="#" th:action="@{/projects/edit/{projectId}(projectId=${project.projectId})}" method="get">
+    <button type="submit">테스크 수정</button>
+</form>
+
+<form action="@{/projects/{projectId}(projectId=${project.projectId})}" method="post">
+    <input type="hidden" name="_method" value="DELETE" />
+    <button type="submit">테스크 삭제</button>
+</form>
+
+<hr>
+<form th:action="@{/comments/task/{taskId}(taskId=${task.taskId})}" method="post">
+    <p><strong>User ID:</strong>
+        <input type="text" th:field="*{userId}" /></p>
+    <p><strong>Comment Content:</strong>
+        <input type="text" th:field="*{commentContent}" /></p>
+    <button type="submit">댓글 등록</button>
+</form>
+<ul th:each="comment : ${commentList}">
+    <li>
+        <span th:text="${comment.getUserId()}"></span>
+        <span th:text="${comment.getCommentContent()}"></span>
+        <form th:action="@{/comments/{commentId}(commentId=${comment.commentId})}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            <button type="submit">댓글 삭제</button>
+        </form>
+    </li>
+</ul>
+
+</body>
+</html>

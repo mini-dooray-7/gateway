@@ -1,13 +1,83 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
 <head>
     <title>Home</title>
+    <meta charset="UTF-8">
 </head>
 <body>
 <h1>Welcome, <span th:text="${user.userName}">User</span>!</h1>
-<h2>Your Projects:</h2>
-<ul th:each="project : ${projects}">
-    <li th:text="${project.name}">Project Name</li>
-</ul>
+<div style="float: left">
+    <h3>프로젝트</h3>
+    <form action="#" th:action="@{/projects}" method="post" th:object="${user}">
+        <label for="projectName">Project Name:</label><br/>
+        <input type="text" id="projectName" name="projectName" th:field="*{projectName}" required/><br/>
+
+        <label for="projectAdminIds">Members:</label><br/>
+        <input type="email"  th:field="*{projectAdminIds}" required/><br/>
+        <select id="projectAdminIds" name="projectAdminIds" th:field="*{projectAdminIds}" required multiple>
+            <option th:each="user : ${existingUsers}" th:value="${user.getId()}" th:text="${user.getId()}">Member</option>
+        </select>
+        <button type="submit">프로젝트 등록하기</button>
+    </form>
+    <table style="border-right: black solid; border-top: black solid">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="project : ${projectList}">
+            <td th:text="${project.projectId}">Project Id</td>
+            <td th:text="${project.projectName}">Project Name</td>
+            <td>
+                <form th:action="@{/projects/{id}(id=${project.projectId})}" method="get">
+                    <button type="submit">조회</button>
+                </form>
+                <form th:action="@{/tasks/projects/{id}(id=${project.projectId})}" method="get">
+                    <button type="submit">테스크 가져오기</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!--<div style="float: left">-->
+<!--    <h3>Task 목록</h3>-->
+<!--    <table style="border-right: black solid; border-top: black solid">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th>Id</th>-->
+<!--            <th>Title</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr th:each="task : ${taskList}">-->
+<!--            <td th:text="${task.taskId}">Task Id</td>-->
+<!--            <td th:text="${task.taskTitle}">Task Title</td>-->
+<!--            <td th:text="${task.taskState}">Task State</td>-->
+<!--            <td>-->
+<!--                <form th:action="@{/projects/{id}(id=${project.projectId})}" method="get">-->
+<!--                    <button type="submit">조회</button>-->
+<!--                </form>-->
+<!--                <form th:action="@{/tasks/projects/{id}(id=${project.projectId})}" method="get">-->
+<!--                    <button type="submit">테스크 가져오기</button>-->
+<!--                </form>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+<!--</div>-->
+<!--<div style="float: left; text-align: center">-->
+<!--    <h3>Task 상세 정보</h3>-->
+<!--    <ul>-->
+<!--        <li th:text="${task.taskTitle}">Title : </li>-->
+<!--        <li th:text="${task.taskTitle}"></li>-->
+<!--        <li th:text="${task.taskCreatedAt}"></li>-->
+<!--        <li th:text="${task.taskState}"></li>-->
+<!--        <li th:text="${task.taskContent}"></li>-->
+<!--    </ul>-->
+<!--</div>-->
+
 </body>
 </html>

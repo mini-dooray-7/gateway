@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Task List</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<form action="#" th:action="@{/tasks/projects/projectId}" method="post" th:object="${newtask}">
+    <label for="userId">User Id:</label><br/>
+    <input type="text" id="userId" name="userId" th:field="*{userId}" required/><br/>
+    <label for="taskTitle">Task Title:</label><br/>
+    <input type="text" id="taskTitle" name="taskTitle" th:field="*{taskTitle}" required/><br/>
+    <label for="taskContent">Task Title:</label><br/>
+    <input type="text" id="taskContent" name="taskContent" th:field="*{taskContent}" required/><br/>
+
+    <button type="submit">테스크 등록하기</button>
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="task : ${taskList}">
+        <td th:text="${task.taskId}">Task Id</td>
+        <td th:text="${task.taskTitle}">Task Name</td>
+        <td>
+            <form th:action="@{/tasks/{id}(id=${task.taskId})}" method="get">
+                <button type="submit">조회</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

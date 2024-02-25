@@ -19,7 +19,7 @@ public class ProjectService {
         return projectAdaptor.registerProject(projectNameDto);
     }
 
-    public ResponseEntity<ProjectInfoDto> getProject(Long id){
+    public ResponseEntity<Project> getProject(Long id){
         return projectAdaptor.getProject(id);
     }
 

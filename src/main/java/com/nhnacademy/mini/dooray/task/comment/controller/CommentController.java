@@ -21,13 +21,13 @@ public class CommentController {
     public String getComments(@PathVariable Long taskId, Model model) {
         List<CommentListDto> commentList = commentService.getComments(taskId);
         model.addAttribute("commentList", commentList);
-        return "/comment/list";
+        return "redirect:/tasks/"+taskId;
     }
 
     @PostMapping("/comments/task/{taskId}")
     public String createComment(@PathVariable Long taskId, @RequestBody CommentCreateDto commentCreateDto) {
         commentService.createComment(taskId, commentCreateDto);
-        return "/comment/list";
+        return "redirect:/tasks/"+taskId;
     }
 
     @DeleteMapping("/comments/{commentId}")

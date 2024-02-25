@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User List</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="project : ${projectList}">
+        <td th:text="${project.projectId}">Project Id</td>
+        <td th:text="${project.projectName}">Project Name</td>
+        <td>
+            <form th:action="@{/projects/{id}(id=${project.projectId})}" method="get">
+                <button type="submit">조회</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

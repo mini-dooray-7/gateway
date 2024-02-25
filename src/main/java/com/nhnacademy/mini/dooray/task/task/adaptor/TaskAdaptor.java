@@ -1,6 +1,6 @@
 package com.nhnacademy.mini.dooray.task.task.adaptor;
 
-import com.nhnacademy.mini.dooray.task.domain.Task;
+import com.nhnacademy.mini.dooray.task.task.domain.Task;
 import com.nhnacademy.mini.dooray.task.task.domain.dto.TaskCreationDto;
 import com.nhnacademy.mini.dooray.task.task.domain.dto.TaskListDto;
 import com.nhnacademy.mini.dooray.task.task.domain.dto.TaskUpdateDto;

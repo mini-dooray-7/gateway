@@ -1,10 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Project Info</title>
 </head>
 <body>
+<h2>Project Info</h2>
+<p><strong>Project ID:</strong> <span th:text="${project.getProjectId()}">Project ID</span></p>
+<p><strong>Project Name:</strong> <span th:text="${project.getProjectName()}">Project Name</span></p>
+<p><strong>Project State:</strong> <span th:text="${project.projectState}">Project State</span></p>
+
+<hr>
+
+<h3>Tags</h3>
+<form th:action="@{/projects/{projectId}(projectId=${project.projectId})/tags}" method="post" th:object="${newtag}">
+    <p><strong>Tag Name:</strong>
+        <input type="text" th:field="*{tagName}" /></p>
+    <button type="submit">태그 등록</button>
+</form>
+<ul th:each="tag : ${project_tags}">
+    <li>
+        <span th:text="${tag.tagName}"></span>
+        <form th:action="@{/projects/{projectId}(projectId=${project.projectId})/tags/{tagId}(tagId=${tag.tagId})}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            <button type="submit">태그 삭제</button>
+        </form>
+    </li>
+</ul>
+
+<hr>
+
+<h3>Members</h3>
+<form th:action="@{/projects/{projectId}(projectId=${project.projectId})/member}" method="post" th:object="${newmember}">
+    <p><strong>User Id:</strong>
+        <input type="text" th:field="*{userId}" /></p>
+    <p><strong>User Role:</strong>
+        <select th:field="*{projectUserRole}">
+            <option th:each="role : ${userRoles}"
+                    th:value="${role}" th:text="${role}">Role</option>
+        </select>
+    </p>
+    <button type="submit">멤버 등록</button>
+</form>
+<ul th:each="member : ${project.getProjectUsers()}">
+    <li>
+        <span th:text="${member.getUserId()} + ' | ' + ${member.getProjectUserRole()}"></span>
+        <form th:action="@{/projects/{projectId}(projectId=${project.projectId})/member/{memberId}(memberId=${member.memberId})}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            <button type="submit">멤버 삭제</button>
+        </form>
+    </li>
+</ul>
+
+<hr>
+
+<h3>Milestones</h3>
+<form th:action="@{/projects/{projectId}(projectId=${project.projectId})/milestone}" method="post" th:object="${newmilestone}">
+    <p><strong>Milestone Name:</strong>
+        <input type="text" th:field="*{milestoneName}" /></p>
+    <button type="submit">마일스톤 등록</button>
+</form>
+<ul th:each="milestone : ${project_milestones}">
+    <li>
+        <span th:text="${milestone.milestoneName}"></span>
+        <form th:action="@{/projects/{projectId}(projectId=${project.projectId})/milestone/{milestoneId}(milestoneId=${milestone.milestoneId})}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            <button type="submit">멤버 삭제</button>
+        </form>
+    </li>
+</ul>
+
+<hr>
+
+<!-- Update Button -->
+<form action="#" th:action="@{/projects/edit/{projectId}(projectId=${project.projectId})}" method="get">
+    <button type="submit">프로젝트 수정</button>
+</form>
+
+<form action="@{/projects/{projectId}(projectId=${project.projectId})}" method="post">
+    <input type="hidden" name="_method" value="DELETE" />
+    <button type="submit">프로젝트 삭제</button>
+</form>
 
 </body>
 </html>

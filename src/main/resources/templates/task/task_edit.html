@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Project</title>
+    <style>
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 0;
+        }
+        form {
+            display: inline; /* To keep buttons on the same line */
+        }
+        .edit-buttons {
+            display: flex;
+            justify-content: left; /* Buttons are now aligned to the center */
+            align-items: center;
+            gap: 5px; /* Gap between buttons */
+        }
+    </style>
+</head>
+<body>
+<h2>Edit Project</h2>
+
+<form th:action="@{/tasks/taskId}" th:method="put" th:object="${newtask}" id="editForm">
+    <p><strong>Task Title:</strong>
+        <input type="text" th:field="*{taskTitle}" /></p>
+    <p><strong>Task Content:</strong>
+        <input type="text" th:field="*{taskContent}" /></p>
+    <p><strong>Task State:</strong>
+        <select th:field="*{taskState}">
+            <option th:each="state : ${taskStates}" th:value="${state}" th:text="${state}">Task State</option>
+        </select>
+    </p>
+    <div class="edit-buttons">
+        <p><input type="submit" value="수정" /></p>
+        <a href="javascript:history.back()"><button type="button">취소</button></a>
+    </div>
+</form>
+
+</body>
+</html>
